@@ -1,4 +1,5 @@
-﻿using MailKit.Net.Smtp;
+﻿using Daily_Positivity.Services;
+using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;
 using Quartz;
@@ -22,7 +23,7 @@ namespace Daily_Positivity.Jobs
         }
         public void SendEmails(string message)
         {
-            var emails = new List<string> { };
+            var emails = new List<string> { }; //Fill the list with the addresses you want to recieve daily messages
             foreach (var email in emails)
             {
                 try

@@ -11,7 +11,7 @@ namespace Daily_Positivity.Services
         {
             var uri = new Uri("http://localhost:11434");
             _ollama = new OllamaApiClient(uri);
-            _ollama.SelectedModel = "tinyllama";
+            _ollama.SelectedModel = "tinyllama"; //pick any model you want
         }
 
         public async Task<string> GeneratePositiveSentenceAsync()
