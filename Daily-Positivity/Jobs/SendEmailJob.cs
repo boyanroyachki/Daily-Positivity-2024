@@ -21,14 +21,14 @@ namespace Daily_Positivity.Jobs
                 Console.WriteLine($"Error in Execute method: {ex.Message}");
             }
         }
-        public void SendEmails(string message)
+        private void SendEmails(string message)
         {
-            var emails = new List<string> { }; //Fill the list with the addresses you want to recieve daily messages
+            var emails = new List<string> {"some_email@gmail.com"}; //Fill the list with the addresses you want to recieve daily messages
             foreach (var email in emails)
             {
                 try
                 {
-                    SendEmail(email, "Daily Positive Message", message);
+                    SendEmail(email, "Today's Positive Message", message);
                 }
                 catch (Exception ex)
                 {
@@ -37,12 +37,12 @@ namespace Daily_Positivity.Jobs
             }
         }
 
-        public void SendEmail(string to, string subject, string body)
+        private void SendEmail(string to, string subject, string body)
         {
             try
             {
                 var message = new MimeMessage();
-                message.From.Add(new MailboxAddress("YOUR NAME", "YOUR EMAIL ADDRESS"));
+                message.From.Add(new MailboxAddress("YOUR NAME", Program.Configuration["EmailSettings:Email"]));
                 message.To.Add(new MailboxAddress("", to));
                 message.Subject = subject;
                 message.Body = new TextPart("plain") { Text = body };
